@@ -631,7 +631,7 @@ select,
 	order: -1;
 }
 
-/* SIDEBAR STYLES */
+/* SIDEBARS */
 
 /* "sidebar-advertisements.php" */
 
@@ -643,6 +643,32 @@ aside.advertisements ul {
 
 aside.advertisements li + li {
 	margin-top: 5rem;
+}
+
+/* "sidebar-sign-up-for-our-newsletter.php" */
+
+aside.sign-up-for-our-newsletter h2 {
+	font-weight: 900;
+	text-align: center;
+}
+
+aside.sign-up-for-our-newsletter form {
+	margin-top: 0.625rem;
+	display: flex;
+	justify-content: center;
+}
+
+aside.sign-up-for-our-newsletter form input,
+aside.sign-up-for-our-newsletter form [type="submit"] {
+	min-width: 0;
+}
+
+aside.sign-up-for-our-newsletter form input {
+	flex: 0 1 auto;
+}
+
+aside.sign-up-for-our-newsletter form [type="submit"] {
+	flex: 0 0 auto;
 }
 
 @media (min-width: 24.4375em) {
@@ -776,12 +802,22 @@ aside.advertisements li + li {
 		font-size: calc(1rem + 5 * (100vw - 20rem) / 850)
 	}
 
-	/* ------- SIDEBAR STYLES ------- */
+	/* ------- SIDEBARS ------- */
 
 	/* "sidebar-advertisements.php" */
 
 	aside.advertisements {
 		padding: 3rem 0.9375rem;
+	}
+
+	/* "sidebar-sign-up-for-our-newsletter.php" */
+
+	aside.sign-up-for-our-newsletter h2 {
+		text-align: left;
+	}
+
+	aside.sign-up-for-our-newsletter form {
+		justify-content: flex-start;
 	}
 }
 
@@ -938,7 +974,7 @@ aside.advertisements li + li {
 		margin-top: 12.5rem;
 	}
 
-	/* ------- SIDEBAR STYLES ------- */
+	/* ------- SIDEBARS ------- */
 
 	/* "sidebar-advertisements.php" */
 
@@ -1002,5 +1038,19 @@ aside.advertisements li + li {
 
 	footer > aside.kick-point-family-of-products > ul {
 		margin: auto 0 auto 0.9375rem !important;
+	}
+
+	/* ------- SIDEBARS ------- */
+
+	/* "sidebar-sign-up-for-our-newsletter.php" */
+
+	aside.sign-up-for-our-newsletter {
+		max-width: 24.375rem;
+		width: 100%;
+		margin-left: calc((100% - 71.25rem) / 2);
+		margin-right: auto;
+		padding: 3.0625rem 0.9375rem;
+		position: absolute;
+		z-index: 1;
 	}
 }
