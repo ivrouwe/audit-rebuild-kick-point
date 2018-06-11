@@ -631,6 +631,20 @@ select,
 	order: -1;
 }
 
+/* SIDEBAR STYLES */
+
+/* "sidebar-advertisements.php" */
+
+aside.advertisements ul {
+	margin: 0;
+	padding-left: 0;
+	list-style: none;
+}
+
+aside.advertisements li + li {
+	margin-top: 5rem;
+}
+
 @media (min-width: 24.4375em) {
 	/* ------- FOOTER ------- */
 
@@ -762,6 +776,13 @@ select,
 		font-size: calc(1rem + 5 * (100vw - 20rem) / 850)
 	}
 
+	/* ------- SIDEBAR STYLES ------- */
+
+	/* "sidebar-advertisements.php" */
+
+	aside.advertisements {
+		padding: 3rem 0.9375rem;
+	}
 }
 
 @media (min-width: 62em) {
@@ -915,6 +936,14 @@ select,
 
 	[data-template="front-page"] .welcome-to-kick-point-recent-work li + li {
 		margin-top: 12.5rem;
+	}
+
+	/* ------- SIDEBAR STYLES ------- */
+
+	/* "sidebar-advertisements.php" */
+
+	aside.advertisements li + li {
+		margin-top: 10rem;
 	}
 }
 
