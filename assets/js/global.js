@@ -1,6 +1,7 @@
 (function () {
-	var majorNavigationCollapsibleElements = document.querySelector('body > header').querySelectorAll('nav > ul, nav > aside'),
-		majorNavigationList = document.querySelector('body > header > nav > ul'),
+	var majorNavigation = document.querySelector('body > header > nav'),
+		majorNavigationList = majorNavigation.querySelector('ul'),
+		majorNavigationAside = majorNavigation.querySelector('aside'),
 		majorNavigationButton = (function () {
 			var button = document.createElement('button'),
 				svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
@@ -46,19 +47,53 @@
  
 			return button;
 		}()),
+		majorNavigationBreak = document.createElement('br'),
+		majorNavigationGroup = document.createElement('div'),
+		resizeTimeout,
 		index;
+
+	function resizeHandler() {
+		var majorNavigationButton = majorNavigation.querySelector('[type="button"][aria-expanded][aria-label]'),
+			adjacentContent = majorNavigationButton.parentElement.querySelector('nav > div'),
+			logoLink = adjacentContent.querySelector('ul > li:first-of-type > a');
+
+		if (window.innerWidth >= 992) {
+			adjacentContent.hidden = false;
+			adjacentContent.removeAttribute('aria-hidden');
+			logoLink.removeAttribute('tabindex');
+			majorNavigationButton.hidden = true;
+		} else {
+			adjacentContent.hidden = true;
+			adjacentContent.setAttribute('aria-hidden', 'true');
+			logoLink.setAttribute('tabindex', '-1');
+			majorNavigationButton.hidden = false;
+		}
+	}
+
+	function resizeThrottler() {
+		// ignore resize events as long as an resizeHandler execution is in the queue
+		if ( !resizeTimeout ) {
+			resizeTimeout = setTimeout(function() {
+			resizeTimeout = null;
+			resizeHandler();
+
+			// The resizeHandler will execute at a rate of 15fps
+			}, 66);
+		}
+	}
 
 	function toggleMajorNavigation(evt) {
 		var button = evt.currentTarget,
 			svg = button.querySelector('svg'),
 			span = button.querySelector('span'),
-			collapsibleElements = button.parentElement.parentElement.querySelectorAll('nav > ul, nav > aside'),
+			group = button.parentElement.querySelector('div'),
+			logoAnchor = button.parentElement.querySelector('div > ul > li:first-of-type > a'),
 			index;
 
 		if (button.getAttribute('aria-expanded') === 'false') {
-			for(index = 0; index < collapsibleElements.length; index++) {
-				collapsibleElements[index].hidden = false;
-			}
+			logoAnchor.setAttribute('tabindex', '0');
+			group.setAttribute('aria-hidden', 'false');
+			group.hidden = false;
 
 			// Transform the hamburger icon into an x and change the button's visible text
 			svg.querySelector('path:first-of-type').setAttribute('transform', 'rotate(-45)');
@@ -69,9 +104,9 @@
 			button.setAttribute('aria-expanded', 'true');
 			button.setAttribute('aria-label', 'Major Navigation, Menu button, expanded');
 		} else if (button.getAttribute('aria-expanded') === 'true') {
-			for(index = 0; index < collapsibleElements.length; index++) {
-				collapsibleElements[index].hidden = true;
-			}
+			logoAnchor.setAttribute('tabindex', '-1');
+			group.setAttribute('aria-hidden', 'true');
+			group.hidden = true;
 
 			// Transform the x back into a hamburger icon and change the button's visible text again
 			svg.querySelector('path:first-of-type').removeAttribute('transform');
@@ -86,10 +121,17 @@
 
 	// Append the Major Navigation menu button to the <nav> element and hide the adjacent, non-visually-hidden content
 	majorNavigationList.insertAdjacentElement('beforebegin', majorNavigationButton);
-	
-	for(index = 0; index < majorNavigationCollapsibleElements.length; index++) {
-		majorNavigationCollapsibleElements[index].hidden = true;
-	}
+	majorNavigationList.insertAdjacentElement('beforebegin', majorNavigationGroup);
+	majorNavigationGroup.appendChild(majorNavigationList);
+	majorNavigationGroup.appendChild(majorNavigationAside);
+	majorNavigationGroup.setAttribute('aria-hidden', 'true');
+	majorNavigationGroup.hidden = true;
+	majorNavigationList.querySelector('li:first-of-type > a').setAttribute('tabindex', '-1');
+	majorNavigationGroup.insertAdjacentElement('afterend', majorNavigationBreak);
+	majorNavigationGroup.insertAdjacentElement('afterend', majorNavigationBreak.cloneNode());
+
+	resizeHandler();
+	window.addEventListener('resize', resizeThrottler);
 
 	// Add a data attribute to the HTML element to indicate that this file has been executed
 	document.querySelector('html').dataset.js = 'true';
