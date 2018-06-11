@@ -1100,9 +1100,13 @@ article.advertisement[hidden] {
 		overflow-y: initial;
 	}
 
-	[data-js="true"] header > nav ul > li:first-of-type > a {
+	[data-js="true"] header > nav > div > ul > li:first-of-type > a {
 		padding: 0.625rem 0;
 		position: static;
+	}
+
+	[data-js="true"] header > nav > div > ul a {
+		font-size: 1rem;
 	}
 
 	/* ------- FOOTER ------- */
