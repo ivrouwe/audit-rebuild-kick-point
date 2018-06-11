@@ -133,6 +133,190 @@ main + * {
 	padding-bottom: 1.875rem;
 }
 
+/* ------- HEADER ------- */
+
+header {
+	min-height: 3.125rem;
+	margin: 0 auto;
+	background-color: #fff;
+}
+
+header br {
+	/* Hide the line breaks in the header */
+	display: none;
+}
+
+header > nav {
+	font-size: 1.75rem;
+}
+
+header > nav ul {
+	margin: 0;
+	padding-left: 0;
+	list-style: none;
+}
+
+header > nav ul a {
+	padding: 1.25rem 3.25rem;
+	display: block;
+	font-size: 1rem;
+	font-weight: 900;
+	text-decoration: none;
+	color: #333;
+	transition: color 0.2s ease-out;
+}
+
+header > nav ul a:active,
+header > nav ul a:visited {
+	color: inherit;
+}
+
+header > nav ul a:focus,
+header > nav ul a:hover {
+	color: #29d9c2;
+	transition: color 0.2s ease-out;
+}
+
+header > nav ul li:first-of-type a {
+	color: #d9252e;
+}
+
+header > nav ul li:first-of-type a:focus,
+header > nav ul li:first-of-type a:hover {
+	color: #29d9c2;
+}
+
+header > nav ul a > span {
+	box-shadow: inset 0 -0.125rem 0 transparent;
+	transition: box-shadow 0.2s ease-out;
+}
+
+header > nav ul a:focus > span,
+header > nav ul a:hover > span {
+	box-shadow: inset 0 -0.125rem 0 #29D9C2;
+	transition: box-shadow 0.2s ease-out;
+}
+
+header > nav aside li:first-of-type a {
+	color: inherit;
+}
+
+header > nav aside li:first-of-type a:focus,
+header > nav aside li:first-of-type a:hover {
+	color: #29d9c2;
+}
+
+nav a {
+	box-shadow: none;
+}
+
+aside.major-navigation-social-media {
+	padding: 1.25rem 2.75rem;
+}
+
+aside.major-navigation-social-media ul {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+aside.major-navigation-social-media dl,
+aside.major-navigation-social-media dd {
+	margin: 0;
+}
+
+aside.major-navigation-social-media a {
+	padding: 0.75rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1rem;
+}
+
+/* JavaScript Enhancements */
+
+[data-js="true"] header {
+	/* Make the header "sticky" */
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 999;
+}
+
+[data-js="true"] header > nav [type="button"][aria-expanded][aria-label] {
+	/* Add a toggle button the header */
+	height: 3.125rem;
+	padding: 0.9375rem 1rem 0.5625rem 1rem;
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
+	color: #333;
+	font-size: 1rem;
+	font-weight: 900;
+	line-height: 1.625;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+[data-js="true"] header > nav [type="button"][aria-expanded][aria-label][hidden] {
+	display: none;
+}
+
+[data-js="true"] header > nav [type="button"][aria-expanded][aria-label] > svg {
+	width: 0.875rem;
+	height: 0.875rem;
+	margin-left: 0.25rem;
+	fill: #333;
+}
+
+[data-js="true"] header > nav > div {
+	/* Wrap the togglable content in a div */
+	background-color: #fff;
+}
+
+[data-js="true"] header > nav > div[hidden] {
+	display: block;
+	transform: translateX(-140vw);
+}
+
+[data-js="true"] header > nav > div:not([hidden]) {
+	height: calc(100vh - 3.125rem);
+	margin-top: 3.125rem;
+	padding: 2.125rem 0 1.875rem 0;
+	overflow-y: auto;
+	transform: none;
+}
+
+[data-js="true"] header > nav > div[hidden] > ul > li {
+	display: none;
+}
+
+[data-js="true"] header > nav > div[hidden] > ul > li:first-of-type {
+	display: block;
+	transform: translateX(140vw);
+}
+
+[data-js="true"] header > nav > div:not([hidden]) > ul > li:first-of-type {
+	display: block;
+	transform: none;
+}
+
+[data-js="true"] header > nav > div[hidden] > aside {
+	display: none;
+}
+
+[data-js="true"] header > nav > div > ul a {
+	font-size: 1.75rem;
+}
+
+[data-js="true"] header > nav > div > ul > li:first-of-type > a {
+	padding: 0.3125rem 0.9375rem;
+	line-height: 1;
+	position: absolute;
+	top: 0;
+}
+
 @media (min-width: 48em) {
 	aside > *,
 	main > *,
@@ -155,6 +339,25 @@ main + * {
 }
 
 @media (min-width: 62em) {
+
+	/* ------- PAGE LAYOUT ------- */
+
+	/* General */
+
+	header > * {
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	header > *,
+	aside > *,
+	main > *,
+	footer {
+		max-width: 58.125rem;
+	}
+
+	/* ------- HEADER ------- */
+
 	header {
 		height: 3.75rem;
 		display: flex;
@@ -176,20 +379,67 @@ main + * {
 		display: flex;
 	}
 
-	header > * {
-		margin-left: auto !important;
-		margin-right: auto !important;
+	header > nav ul,
+	header > nav aside {
+		display: flex;
+		align-items: center;
 	}
 
-	header > *,
-	aside > *,
-	main > *,
-	footer {
-		max-width: 58.125rem;
+	header > nav ul {
+		flex: 0 2 100%;
+		justify-content: flex-end;
+	}
+
+	header > nav ul a {
+		padding: 1.34375rem 0.9375rem;
+	}
+
+	header > nav ul > li:first-of-type {
+		margin-right: auto;
+	}
+
+	header > nav aside {
+		flex: 0 0 auto;
+	}
+
+	header > nav aside ul {
+		flex-wrap: nowrap;
+		justify-content: flex-end;
+		align-items: center;
+	}
+
+	header > nav aside ul li:first-of-type {
+		margin-right: 0;
+	}
+
+	aside.major-navigation-social-media {
+		padding: 0;
+	}
+
+	/* JavaScript Enhancements */
+
+	[data-js="true"] header > nav > div:not([hidden]) {
+		width: 100%;
+		height: inherit;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		justify-content: stretch;
+		overflow-y: initial;
+	}
+
+	[data-js="true"] header > nav ul > li:first-of-type > a {
+		padding: 0.625rem 0;
+		position: static;
 	}
 }
 
 @media (min-width: 75em) {
+	
+	/* ------- PAGE LAYOUT ------- */
+
+	/* General */
+
 	header > *,
 	aside > *,
 	main > *,
