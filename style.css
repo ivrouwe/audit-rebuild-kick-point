@@ -317,6 +317,158 @@ aside.major-navigation-social-media a {
 	top: 0;
 }
 
+/* ------- FOOTER ------- */
+
+footer {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+
+footer a {
+	display: block;
+	color: inherit;
+	box-shadow: none;
+}
+
+footer dd {
+	margin-left: 0;
+}
+
+footer h2 {
+	font-weight: 900;
+}
+
+footer ul {
+	padding-left: 0;
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+footer dd,
+footer p {
+	font-size: 1rem;
+}
+
+footer li {
+	font-size: 0.9375rem;
+}
+
+footer > section.get-in-touch {
+	padding-bottom: 1.875rem;
+	order: 1;
+}
+
+footer > section.get-in-touch address {
+	margin-top: 0.625rem;
+}
+
+footer > section.get-in-touch dl {
+	margin: 0;
+}
+
+footer > section.get-in-touch dl + dl {
+	margin-top: 1.875rem;
+}
+
+footer > section.get-in-touch address dl.get-in-touch-social {
+	display: flex;
+	justify-content: center;
+	flex: 0 0 100%;
+}
+
+footer > section.get-in-touch dl.get-in-touch-social a {
+	padding: 0.5rem;
+}
+
+footer > aside.copyright-information {
+	margin-left: -0.9375rem;
+	margin-right: -0.9375rem;
+	padding-top: 1.25rem;
+	border-top: 0.0625rem solid #979797;
+	font-size: 0.9375rem;
+	order: 2;
+	position: relative;
+}
+
+footer > aside.copyright-information a[rel="author"] {
+	display: inline;
+}
+
+footer > nav {
+	order: 3;
+	font-size: 0.9375rem;
+}
+
+footer > nav ul,
+footer > nav li {
+	display: inline;
+}
+
+footer > nav li:not(:last-child)::after {
+	content: "|";
+	padding-left: 0.125rem;
+	padding-right: 0.125rem;
+}
+
+footer > nav a {
+	display: inline;
+}
+
+footer a {
+	border-bottom: 0.0625rem solid transparent;
+	display: inline-block;
+	transition: color 0.2s ease-out;
+}
+
+footer a:focus,
+footer a:hover {
+	border-bottom: 0.0625rem solid #29D9C2;
+	color: #29d9c2;
+	transition: color 0.2s ease-out;
+}
+
+footer > section.get-in-touch address dl.get-in-touch-social a {
+	border-bottom: none;
+}
+
+footer > section.get-in-touch address dl.get-in-touch-social a:focus,
+footer > section.get-in-touch address dl.get-in-touch-social a:hover {
+	border-bottom: none;
+}
+
+footer > aside.kick-point-family-of-products {
+	padding: 0.25rem 0 3.125rem 0;
+	order: 4;
+	font-size: 0.9375rem;
+}
+
+footer > aside.kick-point-family-of-products h2 {
+	font-size: 0.9375rem;
+	font-weight: 400;
+}
+
+footer > aside.kick-point-family-of-products h2::after {
+	content: ":\0020";
+}
+
+footer > aside.kick-point-family-of-products ul {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+footer > aside.kick-point-family-of-products a {
+	border-bottom: none;
+	padding: 0.5rem;
+}
+
+footer > aside.kick-point-family-of-products a:focus,
+footer > aside.kick-point-family-of-products a:hover {
+	border-bottom: none;
+}
+
 /* ------- FLOW CONTENT ------- */
 
 a {
@@ -447,6 +599,33 @@ select,
 	font-family: "Nunito Sans", sans-serif;
 }
 
+@media (min-width: 24.4375em) {
+	/* ------- FOOTER ------- */
+
+	footer > nav li:not(:last-child)::after {
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
+	}
+
+	footer > nav li:last-child::after {
+		content: "|";
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
+	}
+
+	footer > aside.copyright-information {
+		font-size: 1rem;
+	}
+
+	footer > aside.kick-point-family-of-products h2 {
+		font-size: 1rem;
+	}
+
+	footer li {
+		font-size: 1rem;
+	}
+}
+
 @media (min-width: 48em) {
 	/* ------- PAGE LAYOUT ------- */
 
@@ -462,6 +641,87 @@ select,
 		margin-left: 0 !important;
 		margin-right: 0 !important;
 		max-width: none;
+	}
+
+	/* ------- FOOTER ------- */
+
+	footer {
+		margin-left: auto;
+		margin-right: auto;
+		padding: 0;
+		text-align: left;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+	}
+
+	footer > nav {
+		width: auto;
+		margin: 1.25rem 0 0 0.5rem !important;
+		flex: 0 0 auto;
+	}
+
+	footer > aside.copyright-information {
+		width: auto;
+		margin: 1.25rem 0 0 0;
+		padding-top: 0;
+		border-top: none;
+		flex: 0 0 auto;
+	}
+
+	footer > section.get-in-touch {
+		width: 100%;
+		padding-bottom: 0;
+		border-bottom: 0.0625rem solid #979797;
+		flex: 0 1 100%;
+	}
+
+	footer > section.get-in-touch address {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	footer > section.get-in-touch address dl.get-in-touch-address {
+		margin-top: 0;
+		margin-left: 2.5rem;
+	}
+
+	footer > section.get-in-touch address dl.get-in-touch-address dd {
+		display: inline;
+		white-space: nowrap;
+	}
+
+	footer > section.get-in-touch address dl.get-in-touch-social {
+		margin-bottom: 3.125rem;
+		margin-left: auto;
+		justify-content: flex-start;
+		flex: 0 0 100%;
+	}
+
+	footer > aside.copyright-information {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	footer > aside.kick-point-family-of-products {
+		display: flex;
+		align-items: flex-end;
+	}
+
+	footer > aside.kick-point-family-of-products > * {
+		max-width: none;
+		width: auto;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+
+	}
+
+	footer > aside.kick-point-family-of-products > h2 {
+		white-space: nowrap;
+	}
+
+	footer > aside.kick-point-family-of-products > ul {
+		margin: 0 0 0 0.9375rem !important;
 	}
 
 	/* ------- FLOW CONTENT ------- */
@@ -566,6 +826,26 @@ select,
 		position: static;
 	}
 
+	/* ------- FOOTER ------- */
+
+	footer > section.get-in-touch {
+		padding-bottom: 3.125rem;
+	}
+
+	footer > section.get-in-touch address {
+		flex-wrap: nowrap;	
+	}
+
+	footer > section.get-in-touch address dl.get-in-touch-address {
+		margin-left: 3.75rem;
+	}
+
+	footer > section.get-in-touch address dl.get-in-touch-social {
+		margin: 0 0 0 auto;
+		flex: initial;
+		justify-content: flex-end;
+	}
+
 	/* ------- FLOW CONTENT ------- */
 
 	main {
@@ -600,5 +880,41 @@ select,
 	main > *,
 	footer {
 		max-width: 71.25rem;
+	}
+
+	/* ------- FOOTER ------- */
+
+	footer {
+		position: relative;
+	}
+
+	footer > section.get-in-touch {
+		width: 46.875rem;
+		padding-left: 24.375rem !important;
+		margin-right: 0;
+		padding-top: 3.125rem;
+		padding-bottom: 3.125rem;
+	}
+
+	footer > nav {
+		margin-top: 2.8125rem !important;
+		margin-bottom: 2.8125rem !important;
+	}
+
+	footer > aside.copyright-information {
+		margin-top: 2.8125rem;
+		margin-bottom: 2.8125rem;
+		display: inline;
+	}
+
+	footer > aside.kick-point-family-of-products {
+		width: auto;
+		padding: 0;
+		font-size: 1.3125rem;
+		align-items: center;
+	}
+
+	footer > aside.kick-point-family-of-products > ul {
+		margin: auto 0 auto 0.9375rem !important;
 	}
 }
