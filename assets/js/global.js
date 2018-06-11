@@ -49,7 +49,38 @@
 		}()),
 		majorNavigationBreak = document.createElement('br'),
 		majorNavigationGroup = document.createElement('div'),
+		resizeTimeout,
 		index;
+
+	function resizeHandler() {
+		var majorNavigationButton = majorNavigation.querySelector('[type="button"][aria-expanded][aria-label]'),
+			adjacentContent = majorNavigationButton.parentElement.querySelector('nav > div'),
+			logoLink = adjacentContent.querySelector('ul > li:first-of-type > a');
+
+		if (window.innerWidth >= 992) {
+			adjacentContent.hidden = false;
+			adjacentContent.removeAttribute('aria-hidden');
+			logoLink.removeAttribute('tabindex');
+			majorNavigationButton.hidden = true;
+		} else {
+			adjacentContent.hidden = true;
+			adjacentContent.setAttribute('aria-hidden', 'true');
+			logoLink.setAttribute('tabindex', '-1');
+			majorNavigationButton.hidden = false;
+		}
+	}
+
+	function resizeThrottler() {
+		// ignore resize events as long as an resizeHandler execution is in the queue
+		if ( !resizeTimeout ) {
+			resizeTimeout = setTimeout(function() {
+			resizeTimeout = null;
+			resizeHandler();
+
+			// The resizeHandler will execute at a rate of 15fps
+			}, 66);
+		}
+	}
 
 	function toggleMajorNavigation(evt) {
 		var button = evt.currentTarget,
@@ -98,6 +129,9 @@
 	majorNavigationList.querySelector('li:first-of-type > a').setAttribute('tabindex', '-1');
 	majorNavigationGroup.insertAdjacentElement('afterend', majorNavigationBreak);
 	majorNavigationGroup.insertAdjacentElement('afterend', majorNavigationBreak.cloneNode());
+
+	resizeHandler();
+	window.addEventListener('resize', resizeThrottler);
 
 	// Add a data attribute to the HTML element to indicate that this file has been executed
 	document.querySelector('html').dataset.js = 'true';
