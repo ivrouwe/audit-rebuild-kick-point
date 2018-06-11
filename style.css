@@ -631,7 +631,7 @@ select,
 	order: -1;
 }
 
-/* SIDEBARS */
+/* ------- SIDEBARS ------- */
 
 /* "sidebar-advertisements.php" */
 
@@ -715,6 +715,7 @@ article.advertisement[hidden] {
 
 .advertisement-footer [data-contents="advertiser"] a[rel="author"] {
 	padding: 0.5rem;
+	border-bottom: none;
 	display: flex;
 	justify-content: center;
 	align-items: center;
