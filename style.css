@@ -599,6 +599,38 @@ select,
 	font-family: "Nunito Sans", sans-serif;
 }
 
+/* ------- TEMPLATE STYLES ------- */
+
+/* "front-page.php" */
+
+[data-template="front-page"] main {
+	color: #fff;
+}
+
+[data-template="front-page"] main ul {
+	margin: 0;
+	padding-left: 0;
+	list-style: none;
+}
+
+[data-template="front-page"] main > section {
+	margin: 0;
+	padding-top: 1.875rem;
+	padding-bottom: 1.875rem;
+	display: flex;
+	flex-direction: column;
+}
+
+[data-template="front-page"] main > section em {
+	font-size: 1.3125rem;
+	font-style: normal;
+}
+
+[data-template="front-page"] main > section > section {
+	margin-top: 0;
+	order: -1;
+}
+
 @media (min-width: 24.4375em) {
 	/* ------- FOOTER ------- */
 
@@ -858,6 +890,31 @@ select,
 
 	main li + li {
 		margin-top: 1.075rem;
+	}
+
+	/* ------- TEMPLATE STYLES ------- */
+
+	/* "front-page.php */
+
+	[data-template="front-page"] main > section {
+		padding-top: 8.71875rem;
+		padding-bottom: 8.71875rem;
+	}
+
+	[data-template="front-page"] main > section > section {
+		padding-bottom: 9.9375rem;
+	}
+
+	[data-template="front-page"] main > section > *:not(section) {
+		max-width: 45%;
+	}
+
+	[data-template="front-page"] main > section em {
+		font-size: 1.75rem;
+	}
+
+	[data-template="front-page"] .welcome-to-kick-point-recent-work li + li {
+		margin-top: 12.5rem;
 	}
 }
 
