@@ -83,13 +83,182 @@
 		}
 	}
 
+	function sidebarEnhancements(slug) {
+		switch (slug) {
+			case 'advertisements':
+
+			(function() {
+				var advertisementsSidebar = document.querySelector('body > aside.advertisements'),
+					advertisements = advertisementsSidebar.querySelectorAll('article.advertisement'),
+					buttonPreviousAd = (function() {
+						var button = document.createElement('button'),
+							svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
+							use = document.createElementNS('http://www.w3.org/2000/svg', 'use'),
+							span = document.createElement('span');
+
+							// Add attributes and properties to the <button>
+							button.setAttribute('type', 'button');
+							button.setAttribute('data-action', 'back');
+							button.disabled = true;
+
+							// Add href values to the <use> element
+							use.setAttribute('href', '#icon-previous');
+							use.setAttribute('xlink:href', '#icon-previous');
+
+							// Add attributes to the <svg> and append the <use> element to it
+							svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+							svg.setAttribute('viewBox', '25 0 574 1024');
+							svg.setAttribute('width', '16');
+							svg.setAttribute('height', '16');
+							svg.appendChild(use);
+							
+							// Add a class to the <span> and insert text inside it
+							span.classList.add('visually-hidden');
+							span.appendChild(document.createTextNode(' Previous Advertisement'));
+							
+							// Append child elements to the <button> and add an event listener to it
+							button.appendChild(svg);
+							button.appendChild(span);
+
+							button.addEventListener('click', advertisementsHandler);
+
+							return button;
+					}()),
+					buttonNextAd = (function() {
+						var button = document.createElement('button'),
+							svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
+							use = document.createElementNS('http://www.w3.org/2000/svg', 'use'),
+							span = document.createElement('span');
+
+							// Add attributes to the <button>
+							button.setAttribute('type', 'button');
+							button.setAttribute('data-action', 'forward');
+
+							// Add href values to the <use> element
+							use.setAttribute('href', '#icon-next');
+							use.setAttribute('xlink:href', '#icon-next');
+
+							// Add attributes to the <svg> and append the <use> element to it
+							svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+							svg.setAttribute('viewBox', '-25 0 574 1024');
+							svg.setAttribute('width', '16');
+							svg.setAttribute('height', '16');
+							svg.appendChild(use);
+							
+							// Add a class to the <span> and insert text inside it
+							span.classList.add('visually-hidden');
+							span.appendChild(document.createTextNode('Next Advertisement '));
+							
+							// Append child elements to the <button> and add an event listener to it
+							button.appendChild(span);
+							button.appendChild(svg);
+
+							button.addEventListener('click', advertisementsHandler);
+
+							return button;
+
+					}()),
+					buttons = [buttonPreviousAd, buttonNextAd],
+					definitionList,
+					definitionTerm,
+					definitionDescription,
+					userControls,
+					index;
+
+				function advertisementsHandler(evt) {
+					var userControls = evt.currentTarget.parentElement.parentElement.parentElement,
+						advertisements = userControls.parentElement,
+						activeAd = advertisements.parentElement.querySelector('aside.advertisements > dl:not([hidden])'),
+						buttonPreviousAd = userControls.querySelector('[type="button"][data-action="back"]'),
+						buttonNextAd = userControls.querySelector('[type="button"][data-action="forward"]');
+					
+					if(evt.currentTarget.dataset.action === 'back') {
+						advertisements.dataset.action = 'back';
+
+						if(activeAd.previousElementSibling.previousElementSibling.tagName !== 'DL') {
+							evt.currentTarget.disabled = true;
+						} else {
+							evt.currentTarget.disabled = false;
+						}
+
+						buttonNextAd.disabled = false;
+						activeAd.hidden = true;
+						activeAd.previousElementSibling.hidden = false;
+						activeAd.previousElementSibling.childNodes[0].focus();
+					} else if (evt.currentTarget.dataset.action === 'forward') {
+						advertisements.dataset.action = 'forward';
+						
+						if(activeAd.nextElementSibling.nextElementSibling.tagName !== 'DL') {
+							evt.currentTarget.disabled = true;
+						} else {
+							evt.currentTarget.disabled = false;
+						}
+
+						buttonPreviousAd.disabled = false;
+						activeAd.hidden = true;
+						activeAd.nextElementSibling.hidden = false;
+						activeAd.nextElementSibling.childNodes[0].focus();
+					}
+				}
+
+				advertisementsSidebar.querySelector('ul').remove();
+
+				for (index = 0; index < advertisements.length; index++) {
+					definitionList = document.createElement('dl');
+					definitionTerm = document.createElement('dt');
+					definitionDescription = document.createElement('dd');
+					definitionTerm.classList.add('visually-hidden');
+					definitionTerm.setAttribute('tabindex', '-1');
+					definitionTerm.appendChild(document.createTextNode('Advertisement ' + (index + 1) + ' of ' + advertisements.length));
+					definitionDescription.appendChild(advertisements[index]);
+					definitionList.appendChild(definitionTerm);
+					definitionList.appendChild(definitionDescription);
+
+					if (index > 0) {
+						definitionList.hidden = true;
+					}
+
+					advertisementsSidebar.appendChild(definitionList);
+				}
+
+				userControls = (function() {
+					var userControls = document.createElement('section'),
+						heading = document.createElement('h3'),
+						list = document.createElement('ul'),
+						listItem;
+
+					userControls.classList.add('advertisements-user-controls');
+					userControls.id = 'advertisements-user-controls';
+					userControls.setAttribute('aria-labelledby', 'advertisements-user-controls');
+
+					heading.classList.add('visually-hidden');
+					heading.id = 'advertisements-user-controls-heading';
+					heading.appendChild(document.createTextNode('User Controls'));
+
+					for (index = 0; index < buttons.length; index++) {
+						listItem = document.createElement('li');
+
+						listItem.appendChild(buttons[index]);
+						list.appendChild(listItem);
+					}
+
+					userControls.appendChild(heading);
+					userControls.appendChild(list);
+
+					return userControls;
+				}());
+
+				advertisementsSidebar.appendChild(userControls);
+			}());
+		}
+	}
+
 	function toggleMajorNavigation(evt) {
 		var button = evt.currentTarget,
 			svg = button.querySelector('svg'),
 			span = button.querySelector('span'),
 			group = button.parentElement.querySelector('div'),
-			logoAnchor = button.parentElement.querySelector('div > ul > li:first-of-type > a'),
-			index;
+			logoAnchor = button.parentElement.querySelector('div > ul > li:first-of-type > a');
 
 		if (button.getAttribute('aria-expanded') === 'false') {
 			logoAnchor.setAttribute('tabindex', '0');
@@ -136,173 +305,7 @@
 
 	if (sidebars.length) {
 		for(index = 0; index < sidebars.length; index++) {
-			switch (sidebars[index].dataset.sidebar) {
-				case 'advertisements':
-
-				(function() {
-					var advertisementsSidebar = document.querySelector('body > aside.advertisements'),
-						advertisements = advertisementsSidebar.querySelectorAll('article.advertisement'),
-						buttonPreviousAd = (function() {
-							var button = document.createElement('button'),
-								svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
-								use = document.createElementNS('http://www.w3.org/2000/svg', 'use'),
-								span = document.createElement('span');
-
-								// Add attributes and properties to the <button>
-								button.setAttribute('type', 'button');
-								button.setAttribute('data-action', 'back');
-								button.disabled = true;
-
-								// Add href values to the <use> element
-								use.setAttribute('href', '#icon-previous');
-								use.setAttribute('xlink:href', '#icon-previous');
-
-								// Add attributes to the <svg> and append the <use> element to it
-								svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-								svg.setAttribute('viewBox', '25 0 574 1024');
-								svg.setAttribute('width', '16');
-								svg.setAttribute('height', '16');
-								svg.appendChild(use);
-								
-								// Add a class to the <span> and insert text inside it
-								span.classList.add('visually-hidden');
-								span.appendChild(document.createTextNode(' Previous Advertisement'));
-								
-								// Append child elements to the <button> and add an event listener to it
-								button.appendChild(svg);
-								button.appendChild(span);
-
-								button.addEventListener('click', advertisementsHandler);
-
-								return button;
-						}()),
-						buttonNextAd = (function() {
-							var button = document.createElement('button'),
-								svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
-								use = document.createElementNS('http://www.w3.org/2000/svg', 'use'),
-								span = document.createElement('span');
-
-								// Add attributes to the <button>
-								button.setAttribute('type', 'button');
-								button.setAttribute('data-action', 'forward');
-
-								// Add href values to the <use> element
-								use.setAttribute('href', '#icon-next');
-								use.setAttribute('xlink:href', '#icon-next');
-
-								// Add attributes to the <svg> and append the <use> element to it
-								svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-								svg.setAttribute('viewBox', '-25 0 574 1024');
-								svg.setAttribute('width', '16');
-								svg.setAttribute('height', '16');
-								svg.appendChild(use);
-								
-								// Add a class to the <span> and insert text inside it
-								span.classList.add('visually-hidden');
-								span.appendChild(document.createTextNode('Next Advertisement '));
-								
-								// Append child elements to the <button> and add an event listener to it
-								button.appendChild(span);
-								button.appendChild(svg);
-
-								button.addEventListener('click', advertisementsHandler);
-
-								return button;
-
-						}()),
-						buttons = [buttonPreviousAd, buttonNextAd],
-						advertisementControls,
-						definitionList,
-						definitionTerm,
-						definitionDescription,
-						index;
-
-					function advertisementsHandler(evt) {
-						var userControls = evt.currentTarget.parentElement.parentElement.parentElement,
-							advertisements = userControls.parentElement,
-							activeAd = advertisements.parentElement.querySelector('aside.advertisements > dl:not([hidden])'),
-							buttonPreviousAd = userControls.querySelector('[type="button"][data-action="back"]'),
-							buttonNextAd = userControls.querySelector('[type="button"][data-action="forward"]');
-						
-						if(evt.currentTarget.dataset.action === 'back') {
-							advertisements.dataset.action = 'back';
-
-							if(!(activeAd.previousElementSibling.previousElementSibling.tagName === 'DL')) {
-								evt.currentTarget.disabled = true;
-							} else {
-								evt.currentTarget.disabled = false;
-							}
-
-							buttonNextAd.disabled = false;
-							activeAd.hidden = true;
-							activeAd.previousElementSibling.hidden = false;
-							activeAd.previousElementSibling.childNodes[0].focus();
-						} else if (evt.currentTarget.dataset.action === 'forward') {
-							advertisements.dataset.action = 'forward';
-							
-							if(activeAd.nextElementSibling.nextElementSibling.tagName !== 'DL') {
-								evt.currentTarget.disabled = true;
-							} else {
-								evt.currentTarget.disabled = false;
-							}
-
-							buttonPreviousAd.disabled = false;
-							activeAd.hidden = true;
-							activeAd.nextElementSibling.hidden = false;
-							activeAd.nextElementSibling.childNodes[0].focus();
-						}
-					}
-
-					advertisementsSidebar.querySelector('ul').remove();
-
-					for (index = 0; index < advertisements.length; index++) {
-						definitionList = document.createElement('dl');
-						definitionTerm = document.createElement('dt');
-						definitionDescription = document.createElement('dd');
-						definitionTerm.classList.add('visually-hidden');
-						definitionTerm.setAttribute('tabindex', '-1');
-						definitionTerm.appendChild(document.createTextNode('Advertisement ' + (index + 1) + ' of ' + advertisements.length));
-						definitionDescription.appendChild(advertisements[index]);
-						definitionList.appendChild(definitionTerm);
-						definitionList.appendChild(definitionDescription);
-
-						if (index > 0) {
-							definitionList.hidden = true;
-						}
-
-						advertisementsSidebar.appendChild(definitionList);
-					}
-
-					userControls = (function() {
-						var userControls = document.createElement('section'),
-							heading = document.createElement('h3'),
-							list = document.createElement('ul'),
-							listItem;
-
-						userControls.classList.add('advertisements-user-controls');
-						userControls.id = 'advertisements-user-controls';
-						userControls.setAttribute('aria-labelledby', 'advertisements-user-controls');
-
-						heading.classList.add('visually-hidden');
-						heading.id = 'advertisements-user-controls-heading';
-						heading.appendChild(document.createTextNode('User Controls'));
-
-						for (index = 0; index < buttons.length; index++) {
-							listItem = document.createElement('li');
-
-							listItem.appendChild(buttons[index]);
-							list.appendChild(listItem);
-						}
-
-						userControls.appendChild(heading);
-						userControls.appendChild(list);
-
-						return userControls;
-					}());
-
-					advertisementsSidebar.appendChild(userControls);
-				}());
-			}
+			sidebarEnhancements(sidebars[index].dataset.sidebar);		
 		}
 	}
 
