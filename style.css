@@ -35,6 +35,15 @@ html {
 	}
 }
 
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
 /* ------- ACCESSIBILITY-ORIENTED STYLES ------- */
 
 .visually-hidden {
@@ -631,7 +640,7 @@ select,
 	order: -1;
 }
 
-/* SIDEBARS */
+/* ------- SIDEBARS ------- */
 
 /* "sidebar-advertisements.php" */
 
@@ -643,6 +652,77 @@ aside.advertisements ul {
 
 aside.advertisements li + li {
 	margin-top: 5rem;
+}
+
+/* "sidebar-advertisements.php" - JavaScript Enhancements */
+
+[data-js="true"] aside.advertisements {
+	padding: 1rem 3.5rem 0 3.5rem;
+	/* Use the sidebar as a positioning anchor */
+	position: relative;
+}
+
+[data-js="true"] aside.advertisements > dl {
+	animation: fadeIn 0.2s;
+}
+
+[data-js="true"] aside.advertisements > dl,
+[data-js="true"] aside.advertisements > dl > dd {
+	margin: 0;
+}
+
+[data-js="true"] aside.advertisements section.advertisements-user-controls ul {
+	/* Add User Controls to the sidebar */
+	display: flex;
+	justify-content: flex-end;
+}
+
+[data-js="true"] section.advertisements-user-controls li + li {
+	margin-top: 0;
+	margin-left: 2rem;
+}
+
+[data-js="true"] section.advertisements-user-controls [type="button"] {
+	padding: 0.5rem;
+	border: 0.125rem solid #000;
+	border-radius: 0.25rem;
+	background-color: #fff;
+	transition: color 0.2s ease-out, background-color 0.2s ease-out;
+	position: absolute;
+	z-index: 2;
+	top: 50vh;
+}
+
+[data-js="true"] section.advertisements-user-controls [type="button"][data-action="back"] {
+	left: 0.25rem;
+}
+
+[data-js="true"] section.advertisements-user-controls [type="button"][data-action="forward"] {
+	right: 0.25rem;
+}
+
+[data-js="true"] section.advertisements-user-controls [type="button"][disabled] {
+	opacity: 0.4;
+}
+
+[data-js="true"] section.advertisements-user-controls [type="button"]:focus,
+[data-js="true"] section.advertisements-user-controls [type="button"]:not([disabled]):hover {
+	background-color: #d9252e;
+	color: #fff;
+	transition: color 0.2s ease-out, background-color 0.2s ease-out;
+}
+
+[data-js="true"] section.advertisements-user-controls [type="button"]:not([disabled]):active {
+	transform: scale(1.2) translateY(0.125rem);
+}
+
+
+[data-js="true"] section.advertisements-user-controls [type="button"] svg {
+	width: 1rem;
+	height: auto;
+	margin: 0 auto;
+	display: block;
+
 }
 
 /* "sidebar-sign-up-for-our-newsletter.php" */
@@ -715,6 +795,7 @@ article.advertisement[hidden] {
 
 .advertisement-footer [data-contents="advertiser"] a[rel="author"] {
 	padding: 0.5rem;
+	border-bottom: none;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -964,7 +1045,8 @@ article.advertisement[hidden] {
 	/* "sidebar-advertisements.php" */
 
 	aside.advertisements {
-		padding: 3rem 0.9375rem;
+		/*padding: 3rem 0.9375rem;*/
+		padding: 0;
 	}
 
 	/* "sidebar-sign-up-for-our-newsletter.php" */
@@ -1152,6 +1234,10 @@ article.advertisement[hidden] {
 		padding-bottom: 8.71875rem;
 	}
 
+	[data-template="front-page"] aside + main > section {
+		padding-top: 2rem;
+	}
+
 	[data-template="front-page"] main > section > section {
 		padding-bottom: 9.9375rem;
 	}
@@ -1176,7 +1262,46 @@ article.advertisement[hidden] {
 		margin-top: 10rem;
 	}
 
+	/* "sidebar-advertisements.php" - JavaScript Enhancements */
+
+	[data-js="true"] aside.advertisements {
+		padding: 0;
+		/* Use the sidebar as a positioning anchor */
+		position: static;
+	}
+
+	[data-js="true"] section.advertisements-user-controls li + li {
+		margin-top: 0;
+		margin-left: 2rem;
+	}
+
+	[data-js="true"] section.advertisements-user-controls [type="button"] {
+		padding: 1rem;
+		position: relative;
+		z-index: 2;
+		top: initial;
+	}
+
+	[data-js="true"] section.advertisements-user-controls [type="button"][data-action="back"] {
+		left: initial;
+	}
+
+	[data-js="true"] section.advertisements-user-controls [type="button"][data-action="forward"] {
+		right: initial;
+	}
+
+	[data-js="true"] section.advertisements-user-controls [type="button"] svg {
+		width: 2rem;
+	}
+
 	/* ------- COMPONENT STYLES ------- */
+
+	/* "Advertisement" */
+
+	article.advertisement {
+		height: calc(100vh - 9.875rem);
+		padding: 3rem 0.9375rem;
+	}
 
 	/* "Preview - Case Study" */
 
