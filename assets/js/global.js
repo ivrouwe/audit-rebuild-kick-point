@@ -17,14 +17,14 @@
 
 			// Add attributes to the <path> elements
 			path.setAttribute('d', 'M5 13h90v14H5z');
-			path.style.transformOrigin = '80% 50%';
-			path.style.transition = 'transform 0.2s ease-in-out';
+			path.setAttribute('style', '-webkit-transform-origin: 80% 50% 0; -ms-transform-origin: 80% 50% 0; transform-origin: 80% 50% 0; -webkit-transition: -webkit-transform 0.2s ease-in-out; transition: -webkit-transform 0.2s ease-in-out; -o-transition: transform 0.2s ease-in-out; transition: transform 0.2s ease-in-out; transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;');
+			path.dataset.initialStyle = path.getAttribute('style');
 			path2.setAttribute('d', 'M5 43h90v14H5z');
-			path2.style.transformOrigin = '80% 50%';
-			path2.style.transition = 'opacity 0.2s ease-in-out';
+			path2.setAttribute('style', 'opacity: 1; -webkit-transition: opacity 0.2s ease-in-out; -o-transition: opacity 0.2s ease-in-out; transition: opacity 0.2s ease-in-out;');
+			path2.dataset.initialStyle = path2.getAttribute('style');
 			path3.setAttribute('d', 'M5 73h90v14H5z');
-			path3.style.transformOrigin = '80% 50%';
-			path3.style.transition = 'transform 0.2s ease-in-out';
+			path3.setAttribute('style', '-webkit-transform-origin: 80% 50% 0; -ms-transform-origin: 80% 50% 0; transform-origin: 80% 50% 0; -webkit-transition: -webkit-transform 0.2s ease-in-out; transition: -webkit-transform 0.2s ease-in-out; -o-transition: transform 0.2s ease-in-out; transition: transform 0.2s ease-in-out; transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;');
+			path3.dataset.initialStyle = path3.getAttribute('style');
 
 			// Add attributes to the <svg> and append the <path> elements to it
 			svg.id = "icon-major-navigation";
@@ -256,6 +256,12 @@
 	function toggleMajorNavigation(evt) {
 		var button = evt.currentTarget,
 			svg = button.querySelector('svg'),
+			path1 = svg.querySelector('path:first-of-type'),
+			path2 = svg.querySelector('path:nth-of-type(2)'),
+			path3 = svg.querySelector('path:nth-of-type(3)'),
+			path1Style = path1.dataset.initialStyle,
+			path2Style = path2.dataset.initialStyle,
+			path3Style = path3.dataset.initialStyle,
 			span = button.querySelector('span'),
 			group = button.parentElement.querySelector('div'),
 			logoAnchor = button.parentElement.querySelector('div > ul > li:first-of-type > a');
@@ -266,9 +272,9 @@
 			group.hidden = false;
 
 			// Transform the hamburger icon into an x and change the button's visible text
-			svg.querySelector('path:first-of-type').setAttribute('transform', 'rotate(-45)');
-			svg.querySelector('path:nth-of-type(2)').setAttribute('opacity', '0');
-			svg.querySelector('path:nth-of-type(3)').setAttribute('transform', 'rotate(45)');
+			path1.setAttribute('style', '-webkit-transform-origin: 80% 50% 0; -ms-transform-origin: 80% 50% 0; transform-origin: 80% 50% 0; -webkit-transition: -webkit-transform 0.2s ease-in-out; transition: -webkit-transform 0.2s ease-in-out; -o-transition: transform 0.2s ease-in-out; transition: transform 0.2s ease-in-out; transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out; -webkit-transform: rotate(-45deg); -ms-transform: rotate(-45deg); transform: rotate(-45deg);');
+			path2.setAttribute('style', 'opacity: 0; -webkit-transition: opacity 0.2s ease-in-out; -o-transition: opacity 0.2s ease-in-out; transition: opacity 0.2s ease-in-out;')
+			path3.setAttribute('style', '-webkit-transform-origin: 80% 50% 0; -ms-transform-origin: 80% 50% 0; transform-origin: 80% 50% 0; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); -webkit-transition: -webkit-transform 0.2s ease-in-out; transition: -webkit-transform 0.2s ease-in-out; -o-transition: transform 0.2s ease-in-out; transition: transform 0.2s ease-in-out; transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;');
 			span.replaceChild(document.createTextNode(' Close'), span.childNodes[0]);
 
 			button.setAttribute('aria-expanded', 'true');
@@ -279,9 +285,9 @@
 			group.hidden = true;
 
 			// Transform the x back into a hamburger icon and change the button's visible text again
-			svg.querySelector('path:first-of-type').removeAttribute('transform');
-			svg.querySelector('path:nth-of-type(2)').removeAttribute('opacity');
-			svg.querySelector('path:nth-of-type(3)').removeAttribute('transform');
+			path1.setAttribute('style', path1Style);
+			path2.setAttribute('style', path2Style);
+			path3.setAttribute('style', path3Style);
 			span.replaceChild(document.createTextNode(' Menu'), span.childNodes[0]);
 
 			button.setAttribute('aria-expanded', 'false');
