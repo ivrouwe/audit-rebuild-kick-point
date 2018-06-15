@@ -831,12 +831,29 @@ aside.advertisements li + li {
 	top: 50vh;
 }
 
+[data-js="true"] section.advertisements-user-controls [type="button"]::before {
+	content: "";
+	position: absolute;
+	top: -1rem;
+	right: -0.25rem;
+	bottom: -1rem;
+	left: -0.25rem;
+	background-color: transparent;
+}
+
 [data-js="true"] section.advertisements-user-controls [type="button"][data-action="back"] {
 	left: 0.25rem;
 }
 
+[data-js="true"] section.advertisements-user-controls [type="button"][data-action="back"]::before {
+	right: -1.5rem;
+}
 [data-js="true"] section.advertisements-user-controls [type="button"][data-action="forward"] {
 	right: 0.25rem;
+}
+
+[data-js="true"] section.advertisements-user-controls [type="button"][data-action="forward"]::before {
+	left: -1.5rem;
 }
 
 [data-js="true"] section.advertisements-user-controls [type="button"][disabled] {
