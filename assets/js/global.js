@@ -111,6 +111,7 @@
 							svg.setAttribute('viewBox', '25 0 574 1024');
 							svg.setAttribute('width', '16');
 							svg.setAttribute('height', '16');
+							svg.setAttribute('aria-hidden', 'true');
 							svg.appendChild(use);
 							
 							// Add a class to the <span> and insert text inside it
@@ -145,6 +146,7 @@
 							svg.setAttribute('viewBox', '-25 0 574 1024');
 							svg.setAttribute('width', '16');
 							svg.setAttribute('height', '16');
+							svg.setAttribute('aria-hidden', 'true');
 							svg.appendChild(use);
 							
 							// Add a class to the <span> and insert text inside it
