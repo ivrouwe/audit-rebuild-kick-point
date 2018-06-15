@@ -107,6 +107,7 @@
 
 							// Add attributes to the <svg> and append the <use> element to it
 							svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+							svg.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
 							svg.setAttribute('viewBox', '25 0 574 1024');
 							svg.setAttribute('width', '16');
 							svg.setAttribute('height', '16');
@@ -140,6 +141,7 @@
 
 							// Add attributes to the <svg> and append the <use> element to it
 							svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+							svg.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
 							svg.setAttribute('viewBox', '-25 0 574 1024');
 							svg.setAttribute('width', '16');
 							svg.setAttribute('height', '16');
