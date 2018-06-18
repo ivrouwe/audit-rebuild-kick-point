@@ -706,13 +706,14 @@ select,
 	padding: calc(0.4375rem + 5 * (100vw - 20rem) / 850) calc(0.9375rem + 0 * (100vw - 20rem) / 850);
 	font-size: 1rem;
 	line-height: 1.6;
-	border: 0.0625rem solid #3498db;
+	border: 0.0625rem solid #1c5379;
+	border-radius: 0;
 }
 
 [type="submit"] {
 	font-weight: 900;
-	color: #3498db;
-	background-color: transparent;
+	color: #fff;
+	background-color: #1c5379;
 }
 
 * + [type="submit"] {
