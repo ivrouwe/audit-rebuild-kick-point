@@ -267,6 +267,7 @@ aside.major-navigation-social-media a.icon {
 	/* Add a toggle button the header */
 	height: 3.125rem;
 	padding: 0.9375rem 1rem 0.5625rem 1rem;
+	border: none;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -284,6 +285,11 @@ aside.major-navigation-social-media a.icon {
 	position: absolute;
 	top: 0;
 	right: 0;
+}
+
+[data-js="true"] nav.major-navigation [type="button"][aria-expanded][aria-label]:focus,
+[data-js="true"] nav.major-navigation [type="button"][aria-expanded][aria-label]:hover {
+	background-color: inherit;
 }
 
 [data-js="true"] nav.major-navigation [type="button"][aria-expanded][aria-label][hidden] {
@@ -440,12 +446,23 @@ address {
 }
 
 button {
+	padding: 0.5rem;
+	border: 0.125rem solid #000;
+	border-radius: 0.25rem;
+	background-color: #fff;
 	font-family: inherit;
+	-webkit-transition: color 0.2s ease-out, background-color 0.2s ease-out;
+	-o-transition: color 0.2s ease-out, background-color 0.2s ease-out;
+	transition: color 0.2s ease-out, background-color 0.2s ease-out;
 }
 
-button[type="button"] {
-	border: none;
-	background-color: transparent;
+button:focus,
+button:hover {
+	background-color: #d9252e;
+	color: #fff;
+	-webkit-transition: color 0.2s ease-out, background-color 0.2s ease-out;
+	-o-transition: color 0.2s ease-out, background-color 0.2s ease-out;
+	transition: color 0.2s ease-out, background-color 0.2s ease-out;
 }
 
 dd,
