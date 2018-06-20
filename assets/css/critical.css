@@ -394,6 +394,7 @@ a.call-to-action {
 	text-align: center;
 	color: #fff;
 	text-decoration: none;
+	text-transform: capitalize;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	-webkit-animation-name: glowing;
