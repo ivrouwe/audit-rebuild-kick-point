@@ -160,6 +160,8 @@ nav.major-navigation a {
 	font-weight: 900;
 	text-decoration: none;
 	color: #333;
+	-webkit-box-shadow: none;
+	box-shadow: none;
 	-webkit-transition: color 0.2s ease-out;
 	-o-transition: color 0.2s ease-out;
 	transition: color 0.2s ease-out;
@@ -173,6 +175,8 @@ nav.major-navigation a:visited {
 nav.major-navigation a:focus,
 nav.major-navigation a:hover {
 	color: #29d9c2;
+	-webkit-box-shadow: none;
+	box-shadow: none;
 	-webkit-transition: color 0.2s ease-out;
 	-o-transition: color 0.2s ease-out;
 	transition: color 0.2s ease-out;
