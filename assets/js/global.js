@@ -277,7 +277,7 @@
 
 			// Transform the hamburger icon into an x and change the button's visible text
 			path1.setAttribute('style', '-webkit-transform-origin: 80% 50% 0; -ms-transform-origin: 80% 50% 0; transform-origin: 80% 50% 0; -webkit-transition: -webkit-transform 0.2s ease-in-out; transition: -webkit-transform 0.2s ease-in-out; -o-transition: transform 0.2s ease-in-out; transition: transform 0.2s ease-in-out; transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out; -webkit-transform: rotate(-45deg); -ms-transform: rotate(-45deg); transform: rotate(-45deg);');
-			path2.setAttribute('style', 'opacity: 0; -webkit-transition: opacity 0.2s ease-in-out; -o-transition: opacity 0.2s ease-in-out; transition: opacity 0.2s ease-in-out;')
+			path2.setAttribute('style', 'opacity: 0; -webkit-transition: opacity 0.2s ease-in-out; -o-transition: opacity 0.2s ease-in-out; transition: opacity 0.2s ease-in-out;');
 			path3.setAttribute('style', '-webkit-transform-origin: 80% 50% 0; -ms-transform-origin: 80% 50% 0; transform-origin: 80% 50% 0; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); -webkit-transition: -webkit-transform 0.2s ease-in-out; transition: -webkit-transform 0.2s ease-in-out; -o-transition: transform 0.2s ease-in-out; transition: transform 0.2s ease-in-out; transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;');
 			span.replaceChild(document.createTextNode(' Close'), span.childNodes[0]);
 
