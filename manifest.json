@@ -1,0 +1,22 @@
+{
+  "name": "Kick Point",
+  "short_name": "Kick Point",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "description": "We work with exceptional entrepreneurs and organizations to do better marketing. You’re ready to do better. We know how to help. ••• Who are you? (Or, who do you want to be?) Who needs to know? How will they find out? And finally, why should they care? •••",
+  "icons": [{
+    "src": "assets/favicons/cropped-KP-Favi-32x32.png",
+    "sizes": "32x32",
+    "type": "image/png"
+  }, {
+    "src": "assets/favicons/cropped-KP-Favi-180x180.png",
+    "sizes": "180x180",
+    "type": "image/png"
+  }, {
+    "src": "assets/favicons/cropped-KP-Favi-192x192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }]
+}
